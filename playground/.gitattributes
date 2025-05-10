@@ -1,0 +1,11 @@
+# 기본적으로 자동 감지
+* text=auto
+
+# JSP, HTML 등은 LF로 강제
+*.jsp text eol=lf
+*.html text eol=lf
+
+# Windows에서 만들어도 서버용 스크립트는 LF
+*.sh text eol=lf
+*.yml text eol=lf
+*.properties text eol=lf
