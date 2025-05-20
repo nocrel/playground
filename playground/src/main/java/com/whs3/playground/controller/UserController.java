@@ -4,11 +4,13 @@ import com.whs3.playground.dto.UserRequestDto;
 import com.whs3.playground.dto.UserSuccessResponseDto;
 import com.whs3.playground.model.User;
 import com.whs3.playground.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RestController
 @RequiredArgsConstructor
