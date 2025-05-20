@@ -4,6 +4,7 @@ import com.whs3.playground.dto.UserRequestDto;
 import com.whs3.playground.dto.UserSuccessResponseDto;
 import com.whs3.playground.model.User;
 import com.whs3.playground.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import oracle.jdbc.proxy.annotation.Post;
@@ -31,8 +32,14 @@ public class UserController {
 
     // 로그인
     @PostMapping("/api/user/login")
-    public UserSuccessResponseDto login(@RequestBody UserRequestDto userRequestDto) {
+    public UserSuccessResponseDto login(@RequestBody UserRequestDto userRequestDto, HttpServletRequest request) {
         User user = userService.login(userRequestDto.getUserid(), userRequestDto.getUserpw());
+
+        // 세션에 회원 정보 저장
+        HttpSession session = request.getSession();
+        session.setAttribute("loggedInUser", user);
+        session.setAttribute("userid", user.getUserid());
+
         return new UserSuccessResponseDto(user);
     }
 }

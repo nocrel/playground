@@ -14,19 +14,19 @@
         <table>
             <tr>
                 <th>제목</th>
-                <td><input type="text" name="title" required></td>
+                <td><input type="text" id="title" name="title" required></td>
             </tr>
             <tr>
                 <th>작성자</th>
-                <td><input type="text" name="author" required></td>
+                <td><input type="text" id="author" name="author" value="${sessionScope.userid}" readonly></td>
             </tr>
             <tr>
                 <th>비밀번호</th>
-                <td><input type="password" name="password" required></td>
+                <td><input type="password" id="password" name="password" required></td>
             </tr>
             <tr>
                 <th>내용</th>
-                <td><textarea name="content" required></textarea></td>
+                <td><textarea id="content" name="content" required></textarea></td>
             </tr>
         </table>
 
@@ -39,10 +39,10 @@
     <script>
         function submitCreateForm() {
             const formData = {
-                title: document.querySelector('input[name="title"]').value,
-                author: document.querySelector('input[name="author"]').value,
-                password: document.querySelector('input[name="password"]').value,
-                content: document.querySelector('textarea[name="content"]').value
+                title: document.querySelector('#title').value,
+                author: document.querySelector('#author').value,
+                password: document.querySelector('#password').value,
+                content: document.querySelector('#content').value
             };
 
             fetch('/api/post', {

@@ -15,19 +15,19 @@
         <table>
             <tr>
                 <th>제목</th>
-                <td><input type="text" name="title" value="${board.title}" required></td>
+                <td><input type="text" name="title" id="title" value="${board.title}" required></td>
             </tr>
             <tr>
                 <th>작성자</th>
-                <td><input type="text" name="author" value="${board.author}" required readonly></td>
+                <td><input type="text" id="author" name="author"value="${board.author}" required readonly></td>
             </tr>
             <tr>
                 <th>비밀번호</th>
-                <td><input type="text" name="password" required></td>
+                <td><input type="text" id="password" name="password" required></td>
             </tr>
             <tr>
                 <th>내용</th>
-                <td><textarea name="content" required>${board.content}</textarea></td>
+                <td><textarea id="content" name="content" required>${board.content}</textarea></td>
             </tr>
         </table>
 
@@ -38,12 +38,22 @@
     </form>
 
     <script>
+        window.onload = function() {
+            const currentUser = "${sessionScope.userid}";
+            const postAuthor = "${board.author}";
+
+            if (currentUser !== postAuthor) {
+                alert("본인이 작성한 글만 수정할 수 있습니다.");
+                window.location.href = '/board/posts';
+            }
+        };
+
         function submitEditForm(id) {
             const formData = {
-                title: document.querySelector('input[name="title"]').value,
-                author: document.querySelector('input[name="author"]').value,
-                password: document.querySelector('input[name="password"]').value,
-                content: document.querySelector('textarea[name="content"]').value
+                title: document.querySelector('#title').value,
+                author: document.querySelector('#author').value,
+                password: document.querySelector('#password').value,
+                content: document.querySelector('#content').value
             };
 
             fetch('/api/post/${id}', {
