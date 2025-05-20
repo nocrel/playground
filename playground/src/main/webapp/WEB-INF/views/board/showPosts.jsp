@@ -29,7 +29,7 @@
                     <td><a href="/board/post/${post.id}">${post.title}</a></td>
                     <td>${post.author}</td>
                     <td>${post.createdAt}</td>
-                    <td>${board.modifiedAt}</td>
+                    <td>${post.modifiedAt}</td>
                 </tr>
             </c:forEach>
         </tbody>
