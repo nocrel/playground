@@ -8,10 +8,12 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @NoArgsConstructor
+@Table(name = "BOARD", schema = "PLAY")
 
 public class Board extends Timestamped {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_seq_gen")
+    @SequenceGenerator(name = "board_seq_gen", sequenceName = "PLAY.BOARD_SEQ", allocationSize = 1)
     private Long id;
 
     @Column(nullable = false)

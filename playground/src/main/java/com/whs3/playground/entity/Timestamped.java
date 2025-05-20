@@ -1,5 +1,6 @@
 package com.whs3.playground.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import lombok.Getter;
 import jakarta.persistence.MappedSuperclass;
@@ -16,9 +17,11 @@ import java.time.LocalDateTime;
 public class Timestamped {
 
     @CreatedDate
+    @Column(name = "CREATEDAT")
     private LocalDateTime createdAt;
 
     @LastModifiedDate
+    @Column(name = "MODIFIEDAT")
     private LocalDateTime modifiedAt;
 
 
