@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%@ include file="../common/header.jsp" %>
+
 <!Doctype html>
 <html>
 <head>
@@ -20,10 +22,6 @@
             <tr>
                 <th>작성자</th>
                 <td><input type="text" id="author" name="author"value="${board.author}" required readonly></td>
-            </tr>
-            <tr>
-                <th>비밀번호</th>
-                <td><input type="text" id="password" name="password" required></td>
             </tr>
             <tr>
                 <th>내용</th>
@@ -52,7 +50,6 @@
             const formData = {
                 title: document.querySelector('#title').value,
                 author: document.querySelector('#author').value,
-                password: document.querySelector('#password').value,
                 content: document.querySelector('#content').value
             };
 

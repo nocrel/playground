@@ -45,9 +45,6 @@ public class BoardService {
         Board board = boardRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 게시글입니다.")
         );
-        if (!boardRequestDto.getPassword().equals(board.getPassword())) {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
-        }
 
         board.update(boardRequestDto);
         return new BoardResponseDto(board);
@@ -55,16 +52,12 @@ public class BoardService {
 
     // 게시글 삭제
     @Transactional
-    public SuccessResponseDto deletePost(Long id, BoardRequestDto boardRequestDto) throws Exception {
+    public SuccessResponseDto deletePost(Long id) throws Exception {
         Board board = boardRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 게시글입니다.")
         );
 
-        if (!boardRequestDto.getPassword().equals(board.getPassword())) {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
-        }
-
-        boardRepository.deleteById(id);
+        boardRepository.delete(board);
         return new SuccessResponseDto(true);
     }
 

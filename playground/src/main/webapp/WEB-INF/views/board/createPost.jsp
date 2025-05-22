@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%@ include file="../common/header.jsp" %>
+
 <!Doctype html>
 <html>
 <head>
@@ -21,10 +23,6 @@
                 <td><input type="text" id="author" name="author" value="${sessionScope.userid}" readonly></td>
             </tr>
             <tr>
-                <th>비밀번호</th>
-                <td><input type="password" id="password" name="password" required></td>
-            </tr>
-            <tr>
                 <th>내용</th>
                 <td><textarea id="content" name="content" required></textarea></td>
             </tr>
@@ -41,7 +39,6 @@
             const formData = {
                 title: document.querySelector('#title').value,
                 author: document.querySelector('#author').value,
-                password: document.querySelector('#password').value,
                 content: document.querySelector('#content').value
             };
 

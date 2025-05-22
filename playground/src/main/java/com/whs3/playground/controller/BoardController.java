@@ -73,7 +73,7 @@ public class BoardController {
 
     // 게시글 삭제
     @DeleteMapping("/api/post/{id}")
-    public SuccessResponseDto deletePost(@PathVariable Long id, @RequestBody BoardRequestDto boardRequestDto, HttpServletRequest request) throws Exception {
+    public SuccessResponseDto deletePost(@PathVariable Long id, HttpServletRequest request) throws Exception {
         // 세션에서 회원 정보 가져오기
         HttpSession session = request.getSession();
         String currentUser = (String) session.getAttribute("userid");
@@ -89,6 +89,6 @@ public class BoardController {
             throw new IllegalArgumentException("본인이 작성한 글만 삭제할 수 있습니다.");
         }
 
-        return boardService.deletePost(id, boardRequestDto);
+        return boardService.deletePost(id);
     }
 }

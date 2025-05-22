@@ -25,14 +25,11 @@ public class Board extends Timestamped {
     @Column(nullable = false)
     private String author;
 
-    @Column(nullable = false)
-    private String password;
 
     public Board(BoardRequestDto boardRequestDto) {
         this.title = boardRequestDto.getTitle();
         this.content = boardRequestDto.getContent();
         this.author = boardRequestDto.getAuthor();
-        this.password = boardRequestDto.getPassword();
     }
 
     public void update(BoardRequestDto boardRequestDto) {

@@ -8,7 +8,6 @@ public class BoardRequestDto {
     private String title;
     private String content;
     private String author;
-    private String password;
 
     // 작성자 setter
     public void setAuthor(String author) {

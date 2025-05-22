@@ -1,17 +1,21 @@
 // 게시글 삭제 함수
 function deletePost(id) {
-    const password = prompt("비밀번호를 입력하세요");
-    if (password) {
+    // 삭제 확인 메시지
+    const confirmDelete = confirm("게시글을 삭제하시겠습니까?");
+
+    if (confirmDelete) {
         fetch(`/api/post/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                password: password
-            })
+            }
         })
-            .then(response => response.json())
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('삭제 권한이 없습니다.');
+            })
             .then(data => {
                 if (data.success) {
                     alert("삭제되었습니다.");
@@ -21,7 +25,8 @@ function deletePost(id) {
                 }
             })
             .catch(error => {
-                alert("오류가 발생했습니다: " + error);
+                alert(error.message);
+                console.error('Error:', error);
             });
     }
 }
