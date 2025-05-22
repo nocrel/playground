@@ -1,6 +1,7 @@
 package com.whs3.playground.service;
 
 import com.whs3.playground.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.whs3.playground.model.User;
@@ -43,5 +44,18 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    @Transactional
+    public void unsafeResetPassword(String userid) {
+        String defaultPassword = "1111"; // 초기화된 비밀번호
 
+        User user = userRepository.findByUserid(userid).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 아이디입니다.")
+        );
+
+        userRepository.updatePasswordByUserId(userid, defaultPassword);
+
+
+        System.out.println("비밀번호가 초기화되었습니다.");
+    }
 }

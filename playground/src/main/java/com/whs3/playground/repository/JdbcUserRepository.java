@@ -58,4 +58,16 @@ public class JdbcUserRepository implements UserRepository {
             return Optional.empty();
         }
     }
+
+    // 비밀번호 초기화
+    @Override
+    public void updatePasswordByUserId(String userid, String password) {
+        String sql = "UPDATE PLAY.USERS SET USERPW = ? WHERE USERID = ?";
+
+        int updatedRows = jdbcTemplate.update(sql, password, userid);
+
+        if (updatedRows == 0) {
+            System.err.println("오류입니다.");
+        }
+    }
 }

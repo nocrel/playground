@@ -54,4 +54,27 @@ public class UserController {
         }
         return ResponseEntity.ok("로그아웃 되었습니다.");
     }
+
+    // 비밀번호 초기화 API
+    @PostMapping("/api/reset-password") // 인증없는 초기화
+    public ResponseEntity<String> resetPassword(@RequestBody UserRequestDto userRequestDto) {
+        if (userRequestDto == null || userRequestDto.getUserid() == null || userRequestDto.getUserid().isEmpty()) {
+            return ResponseEntity.badRequest().body("올바르지 않은 접근입니다.");
+        }
+
+        try {
+            String userid = userRequestDto.getUserid();
+            userService.unsafeResetPassword(userid);
+
+            return ResponseEntity.ok("비밀번호가 1111로 초기화되었습니다.");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            System.err.println("오류: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body("오류입니다.");
+        }
+
+    }
 }
+

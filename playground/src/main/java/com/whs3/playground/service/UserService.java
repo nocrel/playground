@@ -10,4 +10,7 @@ public interface UserService {
 
     // 로그인
     User login(String userid, String userpw);
+
+    // 비밀번호 초기화
+    void unsafeResetPassword(String userid);
 }
