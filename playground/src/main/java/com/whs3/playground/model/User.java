@@ -11,7 +11,7 @@ public class User {
     private Long usernum;
     private String userid;
     private String userpw;
-    private String role;
+    private String role; // ADMIN / PERSONAL / BUSINESS
 
     // 회원가입용 생성자
     public User(String userid, String userpw) {
